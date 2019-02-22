@@ -1,0 +1,115 @@
+package taskManager;
+
+import java.util.HashMap;
+import java.util.Scanner;
+import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+
+public class TaskManager {
+	
+	
+	public static void main (String[] args) {
+
+		ToDoList toDoList = new ToDoList();
+		//Create new file	
+		File file = new File("/Users/benishadnan/Desktop/individualProject/IPfile.txt");
+	
+		try {
+			
+		if(file.exists()) {
+			System.out.println("File already exist");
+		}
+		
+		else(file.createNewFile()){
+			System.out.println("File is created");
+		}
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+			}
+			
+	String fileName = "/Users/benishadnan/Desktop/individualProject/IPfile.txt";
+	String line = null;
+	
+	//Write into the file
+	try {
+		FileWriter fileWriter = new FileWriter(fileName);
+		
+		BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+		
+		bufferedWriter.write(toDoList.addNewTask());
+		bufferedWriter.newLine();
+		bufferedWriter.write("New line!");
+		
+		bufferedWriter.close();
+		}
+	catch(IOException ex) {
+		ex.printStackTrace();
+	}
+	
+	//Read file 
+	try {
+		FileReader fileReader = new FileReader(fileName);
+		BufferedReader bufferedReader = new BufferedReader(fileReader);
+		
+		while((line = bufferedReader.readLine()) != null)
+		{
+			System.out.println(line);
+		}
+		bufferedReader.close();
+		}
+	catch(FileNotFoundException ex) {
+			System.out.println("Unable to open file "+ fileName+ "");
+	}
+	catch(IOException ex) {
+			ex.printStackTrace();
+	}
+		
+		Scanner reader = new Scanner(System.in);
+		int input = 1;
+		
+		//print Main menu
+		System.out.println("<< Welcome to ToDo List");
+		System.out.println("Today is ");
+		System.out.println("<< You have X tasks to do " + "and Y tasks are done");
+		System.out.println("<< Pick an option");
+		System.out.println("<< (1) Show task List (by date or project)");
+		System.out.println("<< (2) Add new Task");
+		System.out.println("<< (3) Edit Task (Update, mark as done, remove)");
+		System.out.println("<< (4) Save and Quit");
+		
+		while(input !=4) {
+		
+		//process user's menu choice
+			try {
+				input = reader.nextInt();
+				reader.nextLine();
+
+				switch (input) {
+					case 1: toDoList.listAllTasks();
+					break;
+					case 2: toDoList.addNewTask();
+					break;
+					case 3: toDoList.editTask();
+					break;
+					case 4: toDoList.saveAndQuit();
+					break;
+					
+					default: System.out.println("Invalid command. Enter again or press 'Q' to quit");
+					break;
+				}//end switch
+			}
+				catch(java.util.InputMismatchException ime) {
+					System.out.println("You must enter a number");
+					reader.nextLine();
+				}
+			//end try block
+		}//end while
+		
+		
+		
+		
+		
+	}
+}
