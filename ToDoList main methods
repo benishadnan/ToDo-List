@@ -1,0 +1,91 @@
+package taskManager;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
+//import java.util.Iterator;
+
+//Main class of TodoList
+public class ToDoList {
+	HashMap<String,ArrayList<Task>> toDoList = new HashMap<>();
+	ArrayList<Task> task = new ArrayList<>();
+	Scanner reader = new Scanner(System.in);
+	
+	//Predefined Projects for user to choose from 
+	String project1 = "Project No 1";
+	String project2 = "Project No 2";
+	String project3 = "Project No 3";
+	
+	
+	
+	public void listAllProjects() {
+		System.out.println(project1 +"\n"+ project2 +"\n"+ project3+"\n");
+		
+	}
+	
+	public String getProject(String projectName) {
+	
+		return projectName;
+	}
+	
+	//Show All Tasks by project or date
+	public void listAllTasks() {
+		System.out.println("Case 1");
+		/*System.out.println("How do you want to see the tasks: by Project or Date\n Enter 'P' for prject or 'D' for date");
+		char command = reader.next().trim().charAt(0);
+		switch(command) {
+		
+		case 'P':
+			System.out.println("Choose a project from list ");
+			listAllProjects();
+			//toDoList();
+			break;
+		case 'D':
+			break;
+		default:
+			break;
+		}
+		*/
+		//ArrayList<Task> tempArrayList = new ArrayList<>();
+		//tempArrayList = toDoList.get(project);
+		
+		//while(tempArrayList.indexOf(null)>0) {
+		//	System.out.println(tempArrayList);
+		//}
+	}
+	
+	//Adds new task
+	public void addNewTask(String projectName, Task task) {
+		
+		System.out.println("Enter the project for task\n ");
+		String command = reader.next();
+		reader.nextLine();
+		try {
+			toDoList.getProject(command).add(new Task());
+		}
+		
+		
+			catch(java.util.InputMismatchException ime) {
+				System.out.println("You must enter a number");
+				reader.nextLine();
+		
+		}
+	
+	
+	
+	public void editTask() {System.out.println("Case 3");}
+		
+		public void updateTaskStatus(){
+			
+		}
+		
+		public void removeTask(){
+			
+		}
+	
+	public void saveAndQuit() {System.out.println("Case 4");
+	
+	}
+	
+	
+
+}
